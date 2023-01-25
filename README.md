@@ -1,4 +1,4 @@
-![Systemd](http://brand.systemd.io/assets/page-logo.png)
+![Systemd](http://brand.systemd.io/assets/page-logo.png) =b
 
 System and Service Manager
 
