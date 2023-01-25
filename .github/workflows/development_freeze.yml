@@ -27,6 +27,6 @@ jobs:
           fetch-depth: 0
 
       - name: Development Freezer
-        uses: redhat-plumbers-in-action/devel-freezer@run-from-forks
+        uses: jamacku/devel-freezer@run-from-forks
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
