@@ -3,19 +3,24 @@
 
 name: Development Freeze
 on:
-  pull_request:
-    types: [ opened, reopened, synchronize ]
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Receive PR"]
+    branches: [main]
+    types:
+      - completed
 
 permissions:
   contents: read
 
 jobs:
   freezer:
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-22.04
 
     permissions:
-      pull-requests: write
+      issues: write
 
     steps:
       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
@@ -23,6 +28,6 @@ jobs:
           fetch-depth: 0
 
       - name: Development Freezer
-        uses: redhat-plumbers-in-action/devel-freezer@main
+        uses: redhat-plumbers-in-action/devel-freezer@run-from-forks
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
