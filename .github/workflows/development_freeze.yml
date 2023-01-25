@@ -49,13 +49,16 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             var fs = require('fs');
-            var issue_number = Number(fs.readFileSync('./NR'));
+            var pr_number = Number(fs.readFileSync('./NR'));
+            setOutput('pr_number', pr_number);
             await github.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: issue_number,
+              issue_number: pr_number,
               body: 'Everything is OK. Thank you for the PR!'
             });
+            
+      - run: echo "pr_number={value}" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
         with:
@@ -64,4 +67,5 @@ jobs:
       - name: Development Freezer
         uses: jamacku/devel-freezer@run-from-forks
         with:
+          pr: ${{ env.pr_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
