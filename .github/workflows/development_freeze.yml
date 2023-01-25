@@ -13,7 +13,6 @@ permissions:
 jobs:
   freezer:
     runs-on: ubuntu-22.04
-    if: github.repository == 'systemd/systemd'
 
     permissions:
       pull-requests: write
