@@ -5,7 +5,6 @@ name: Development Freeze
 on:
   workflow_run:
     workflows: ["Receive PR"]
-    branches: [main]
     types:
       - completed
 
