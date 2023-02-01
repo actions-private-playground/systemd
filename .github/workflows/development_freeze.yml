@@ -19,6 +19,9 @@ jobs:
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-22.04
+    
+    permissions:
+      issues: write
 
     steps:
       - name: 'Download artifact'
