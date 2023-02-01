@@ -1,10 +1,12 @@
 # doc: https://github.com/redhat-plumbers-in-action/devel-freezer#readme
+
 ---
 
 name: Development Freeze
+
 on:
   workflow_run:
-    workflows: ["Receive PR"]
+    workflows: [ Gather Pull Request Metadata ]
     types:
       - completed
 
@@ -17,8 +19,6 @@ jobs:
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-22.04
-
-    permissions: write-all
 
     steps:
       - name: 'Download artifact'
@@ -59,12 +59,15 @@ jobs:
               body: 'Everything is OK. Thank you for the PR!'
             });
 
-      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
+      - name: Repository checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Development Freezer
-        uses: jamacku/devel-freezer@run-from-forks
+        uses: ./
         with:
           pr: ${{ env.pr_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+...
