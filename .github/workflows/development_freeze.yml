@@ -70,7 +70,7 @@ jobs:
       - name: Development Freezer
         uses: jamacku/devel-freezer@run-from-forks
         with:
-          pr: ${{ env.pr_number }}
+          pr-number: ${{ env.pr_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
 ...
