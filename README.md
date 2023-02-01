@@ -1,6 +1,6 @@
 ![Systemd](http://brand.systemd.io/assets/page-logo.png)
 
-\o/ \o/
+\o/ \o/ \o/
 
 System and Service Manager
 
