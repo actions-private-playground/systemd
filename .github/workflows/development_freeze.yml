@@ -47,20 +47,14 @@ jobs:
             fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
       - run: unzip pr.zip
 
-      - name: 'Comment on PR'
+      - name: 'Get Pull Request number'
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             const pr_number = Number(fs.readFileSync('./NR'));
             core.exportVariable('pr_number', pr_number);
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pr_number,
-              body: 'Everything is OK. Thank you for the PR!'
-            });
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Repository checkout
         uses: actions/checkout@v3
