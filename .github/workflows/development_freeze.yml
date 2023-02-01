@@ -68,7 +68,7 @@ jobs:
           fetch-depth: 0
 
       - name: Development Freezer
-        uses: ./
+        uses: jamacku/devel-freezer@run-from-forks
         with:
           pr: ${{ env.pr_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
