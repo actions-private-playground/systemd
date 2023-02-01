@@ -1,4 +1,6 @@
-![Systemd](http://brand.systemd.io/assets/page-logo.png) \o/ \o/
+![Systemd](http://brand.systemd.io/assets/page-logo.png)
+
+\o/ \o/
 
 System and Service Manager
 
