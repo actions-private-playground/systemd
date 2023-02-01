@@ -19,11 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Development Freezer
-        uses: redhat-plumbers-in-action/devel-freezer@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Store PR number in file
         run: |
           mkdir -p ./pr
