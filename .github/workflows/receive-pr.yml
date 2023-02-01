@@ -1,23 +1,38 @@
-name: Receive PR
+---
+
+name: Gather Pull Request Metadata
 
 on:
   pull_request:
-    types: [ opened, reopened, synchronize ]
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
-  get-pr-number:
+  gather-metadata:
     runs-on: ubuntu-latest
 
-    steps:        
-      - uses: actions/checkout@v3
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Save PR number
+      - name: Development Freezer
+        uses: redhat-plumbers-in-action/devel-freezer@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Store PR number in file
         run: |
           mkdir -p ./pr
           echo ${{ github.event.number }} > ./pr/NR
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload PR number as artifact
+        uses: actions/upload-artifact@v2
         with:
           name: pr
           path: pr/
+
+...
