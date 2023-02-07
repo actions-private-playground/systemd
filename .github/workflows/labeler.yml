@@ -19,6 +19,10 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - uses: actions/labeler@e54e5b338fbd6e6cdb5d60f51c22335fc57c401e
       if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
       with:
