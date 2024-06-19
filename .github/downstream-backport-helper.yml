@@ -1,0 +1,11 @@
+downstream:
+  - owner: actions-private-playground
+    repo: systemd-stable
+    branches:
+      - '*-stable'
+  - owner: actions-private-playground
+    repo: systemd
+    branches:
+      - '*-stable'
+    status-title: 'systemd-stable'
+lookup-interval: 7

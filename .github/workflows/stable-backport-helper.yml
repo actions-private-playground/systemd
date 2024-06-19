@@ -1,0 +1,21 @@
+name: Stable Backport Helper
+
+on:
+  schedule:
+    # every hour
+    - cron: "0 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  stable-backport-helper:
+    runs-on: ubuntu-24.04
+    permissions:
+      issues: write
+
+    steps:
+      - name: Repository checkout
+        uses: jamacku/downstream-backport-helper@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
