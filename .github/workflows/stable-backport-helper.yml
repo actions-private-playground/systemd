@@ -11,11 +11,11 @@ permissions:
 jobs:
   stable-backport-helper:
     runs-on: ubuntu-24.04
+
     permissions:
-      issues: write
+      pull-requests: write
 
     steps:
-      - name: Repository checkout
-        uses: jamacku/downstream-backport-helper@main
+      - uses: jamacku/downstream-backport-helper@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
